@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= typeof title !== 'undefined' ? title : 'NewsStream' %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+
+<header class="app-header">
+    <% if (typeof user !== 'undefined' && user) { %>
+            <a href="/feed" class="brand">NewsStream</a>
+        <% } else { %>
+            <a href="/" class="brand">NewsStream</a>
+        <% } %>
+
+    <nav class="nav-links">
+        <% if (typeof user !== 'undefined' && user) { %>
+            <span class="user-pill"><%= user.username %></span>
+            <a href="/logout">Sair</a>
+        <% } else { %>
+            <a href="/login">Entrar</a>
+            <a href="/register" class="nav-cta">Criar conta</a>
+        <% } %>
+    </nav>
+</header>
+
+<main class="page-wrapper">
+
+    <% if (typeof messages !== 'undefined' && messages.error && messages.error.length > 0) { %>
+        <div class="alert alert-error">
+            <%= messages.error[0] %>
+        </div>
+    <% } %>
+
+    <% if (typeof messages !== 'undefined' && messages.success && messages.success.length > 0) { %>
+        <div class="alert alert-success">
+            <%= messages.success[0] %>
+        </div>
+    <% } %>
+
+    <%- body %>
+</main>
+
+</body>
+</html>

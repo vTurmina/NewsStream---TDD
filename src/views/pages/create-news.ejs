@@ -1,0 +1,51 @@
+<section class="create-page">
+    <div class="create-card">
+        <span class="badge">Nova publicação</span>
+
+        <h1>Publicar notícia</h1>
+
+        <p>Preencha os dados abaixo para adicionar uma notícia ao feed.</p>
+
+        <form action="/news/create" method="POST" class="modern-form">
+            <div class="form-group">
+                <label for="title">Título</label>
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Digite o título da notícia"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="content">Conteúdo</label>
+                <textarea
+                    id="content"
+                    name="content"
+                    placeholder="Digite o conteúdo da notícia"
+                    required
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="categoryId">Categoria</label>
+                <select id="categoryId" name="categoryId">
+                    <option value="">Sem categoria</option>
+                    <option value="1">Tecnologia</option>
+                    <option value="2">Esportes</option>
+                    <option value="3">Política</option>
+                    <option value="4">Cultura</option>
+                    <option value="5">Mundo</option>
+                </select>
+            </div>
+
+            <div class="form-actions">
+                <a href="/feed" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">
+                    Publicar
+                </button>
+            </div>
+        </form>
+    </div>
+</section>

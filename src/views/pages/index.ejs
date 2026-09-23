@@ -1,0 +1,39 @@
+<section class="home-hero">
+    <div class="hero-text">
+        <span class="badge">Notícias personalizadas</span>
+
+        <h1>Seu feed de notícias, simples e inteligente.</h1>
+
+        <p>
+            Acompanhe notícias, publique conteúdos, curta e comente em uma plataforma
+            feita para organizar informação de forma rápida.
+        </p>
+
+        <div class="hero-actions">
+            <% if (typeof user !== 'undefined' && user) { %>
+                <a href="/feed" class="btn btn-primary">Ir para o feed</a>
+                <a href="/news/create" class="btn btn-secondary">Publicar notícia</a>
+            <% } else { %>
+                <a href="/register" class="btn btn-primary">Criar conta</a>
+                <a href="/login" class="btn btn-secondary">Ver notícias</a>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="hero-panel">
+        <div class="mini-card">
+            <strong>📰 Feed</strong>
+            <span>Notícias recentes organizadas para você.</span>
+        </div>
+
+        <div class="mini-card">
+            <strong>💬 Interações</strong>
+            <span>Curta e comente nas publicações.</span>
+        </div>
+
+        <div class="mini-card">
+            <strong>🔐 Segurança</strong>
+            <span>Acesso protegido por autenticação.</span>
+        </div>
+    </div>
+</section>

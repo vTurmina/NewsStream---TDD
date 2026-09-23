@@ -1,0 +1,112 @@
+<section class="feed-page">
+    <div class="page-title-row">
+        <div>
+            <span class="badge">Feed</span>
+            <h1>Últimas notícias</h1>
+            <p>Veja as publicações mais recentes do NewsStream.</p>
+        </div>
+
+        <a href="/news/create" class="btn btn-primary">
+            + Publicar notícia
+        </a>
+    </div>
+
+    <div class="news-grid">
+        <% if (typeof news !=='undefined' && news.length> 0) { %>
+
+            <% news.forEach(item=> { %>
+                <article class="news-card">
+
+                    <a href="/news/<%= item.id %>" class="news-link-wrapper">
+
+                        <div class="news-top">
+                            <span class="category-pill">
+                                <%= item.Category?.name || ('Categoria ' + (item.categoryId || ' geral')) %>
+                            </span>
+
+                            <% if (typeof user !=='undefined' && user && item.userId===user.id) { %>
+                                <form action="/news/delete/<%= item.id %>" method="POST"
+                                    onclick="event.stopPropagation();">
+                                    <button type="submit" class="btn-delete">
+                                        Excluir
+                                    </button>
+                                </form>
+                                <% } %>
+                        </div>
+
+                        <h2>
+                            <%= item.title %>
+                        </h2>
+
+                        <p>
+                            <%= item.content.length> 180
+                                ? item.content.substring(0, 180) + '...'
+                                : item.content %>
+                        </p>
+
+                        <div class="news-footer">
+
+                            <% if (item.createdAt) { %>
+                                <span>
+                                    <%= new Date(item.createdAt) .toLocaleDateString('pt-BR') %>
+                                </span>
+                                <% } %>
+
+                                    <% if ( typeof user !=='undefined' && user && item.userId===user.id ) { %>
+
+                                        <span>
+                                            Sua notícia
+                                        </span>
+
+                                        <% } %>
+
+                        </div>
+
+                    </a>
+
+                    <div class="card-actions">
+
+                                <form action="/like" method="POST">
+                                    <input type="hidden" name="newsId" value="<%= item.id %>">
+
+                                    <button type="submit" class="like-btn <%= item.liked ? 'liked' : '' %>">
+                                        <% if(item.liked){ %>
+                                            ❤️ Curtido
+                                            <% } else { %>
+                                                🤍 Curtir
+                                                <% } %>
+                                    </button>
+                                </form>
+
+                                <form action="/comment" method="POST" class="inline-comment">
+                                    <input type="hidden" name="newsId" value="<%= item.id %>">
+
+                                    <input type="text" name="content" placeholder="Comentar..." required>
+
+                                    <button type="submit" class="btn btn-primary">
+                                        Enviar
+                                    </button>
+                                </form>
+
+                    </div>
+
+                </article>
+                <% }) %>
+
+                    <% } else { %>
+
+                        <div class="empty-state">
+                            <h2>Nenhuma notícia publicada</h2>
+
+                            <p>
+                                Publique a primeira notícia para começar o feed.
+                            </p>
+
+                            <a href="/news/create" class="btn btn-primary">
+                                Publicar notícia
+                            </a>
+                        </div>
+
+                        <% } %>
+    </div>
+</section>

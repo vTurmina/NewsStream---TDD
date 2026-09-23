@@ -1,0 +1,132 @@
+<section class="details-page">
+    <article class="details-card">
+
+        <div class="news-top">
+            <span class="category-pill">
+                Categoria <%= news.categoryId || 'geral' %>
+            </span>
+
+            <% if (typeof user !=='undefined' && user && news.userId===user.id) { %>
+                <form action="/news/delete/<%= news.id %>" method="POST">
+                    <button type="submit" class="btn-delete">
+                        Excluir
+                    </button>
+                </form>
+                <% } %>
+        </div>
+
+        <header class="details-header">
+            <h1>
+                <%= news.title %>
+            </h1>
+
+            <% if (news.createdAt) { %>
+                <span class="details-date">
+                    Publicado em
+                    <%= new Date(news.createdAt).toLocaleDateString('pt-BR') %>
+                </span>
+                <% } %>
+        </header>
+
+        <p class="details-content">
+            <%= news.content %>
+        </p>
+
+        <div class="details-actions">
+            <% if (typeof user !=='undefined' && user) { %>
+                <form action="/like" method="POST">
+                    <input type="hidden" name="newsId" value="<%= news.id %>">
+
+                    <button type="submit" class="like-btn <%= news.liked ? 'liked' : '' %>">
+                        <% if (news.liked) { %>
+                            ❤️ Curtido
+                            <% } else { %>
+                                🤍 Curtir
+                                <% } %>
+                    </button>
+                </form>
+
+                <button type="button" class="btn btn-secondary" onclick="toggleCommentForm()">
+                    💬 Comentar
+                </button>
+                <% } %>
+
+                    <a href="/feed" class="btn btn-primary">
+                        Voltar ao feed
+                    </a>
+        </div>
+
+        <section class="comments-section">
+            <div class="comments-header">
+                <div>
+                    <span class="badge">Comentários</span>
+                    <h2>Discussão da notícia</h2>
+                </div>
+            </div>
+
+            <% if (typeof user !=='undefined' && user) { %>
+                <div id="commentFormWrapper" class="comment-form-hidden">
+                    <form action="/comment" method="POST" class="comment-box">
+                        <input type="hidden" name="newsId" value="<%= news.id %>">
+
+                        <textarea name="content" placeholder="Escreva seu comentário..." required></textarea>
+
+                        <button type="submit" class="btn btn-primary">
+                            Postar comentário
+                        </button>
+                    </form>
+                </div>
+                <% } else { %>
+                    <p class="login-comment-warning">
+                        Entre na sua conta para comentar nesta notícia.
+                    </p>
+                    <% } %>
+
+                        <div class="comments-list">
+                            <% if (news.Comments && news.Comments.length> 0) { %>
+
+                                <% news.Comments.forEach(comment=> { %>
+                                    <div class="comment-card">
+                                        <div class="comment-content">
+                                            <span class="comment-user">
+                                                Usuário #<%= comment.userId %>
+                                            </span>
+
+                                            <p>
+                                                <%= comment.content %>
+                                            </p>
+                                        </div>
+
+                                        <% if (typeof user !=='undefined' && user && comment.userId===user.id) { %>
+                                            <form action="/comment/delete" method="POST">
+                                                <input type="hidden" name="commentId" value="<%= comment.id %>">
+
+                                                <button type="submit" class="btn-delete">
+                                                    Excluir
+                                                </button>
+                                            </form>
+                                            <% } %>
+                                    </div>
+                                    <% }) %>
+
+                                        <% } else { %>
+                                            <div class="empty-comments">
+                                                <h3>Nenhum comentário ainda</h3>
+                                                <p>Seja o primeiro a comentar nesta notícia.</p>
+                                            </div>
+                                            <% } %>
+                        </div>
+        </section>
+
+    </article>
+</section>
+
+<script>
+    function toggleCommentForm() {
+        const form = document.getElementById('commentFormWrapper');
+
+        if (form) {
+            form.classList.toggle('show-comment-form');
+        }
+    }
+</script>
