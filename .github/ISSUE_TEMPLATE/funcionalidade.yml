@@ -1,0 +1,34 @@
+﻿name: Funcionalidade
+description: Proponha uma nova funcionalidade ou melhoria para o NewsStream
+title: "feat: "
+labels: ["funcionalidade"]
+body:
+  - type: textarea
+    id: problema
+    attributes:
+      label: Qual problema ou necessidade esta funcionalidade resolve?
+      description: Explique o contexto e o objetivo da mudança.
+    validations:
+      required: true
+  - type: textarea
+    id: criterios
+    attributes:
+      label: Critérios de aceitação
+      description: Descreva como saberemos que a funcionalidade está concluída.
+      placeholder: |
+        - [ ] O usuário consegue...
+        - [ ] O sistema deve...
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área
+      options:
+        - interface
+        - backend
+        - banco de dados
+        - testes
+        - infraestrutura
+    validations:
+      required: true

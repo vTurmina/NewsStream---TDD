@@ -1,0 +1,7 @@
+# Responsáveis pela revisão das alterações do NewsStream.
+
+/.github/             @vTurmina
+/src/                 @vTurmina
+/test/                @vTurmina
+/package.json         @vTurmina
+/package-lock.json    @vTurmina
