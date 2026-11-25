@@ -1,3 +1,4 @@
+const variavelNaoUtilizada = 'erro intencional de lint';
 import bcrypt from 'bcryptjs';
 import { Op } from 'sequelize';
 
