@@ -89,7 +89,7 @@ describe('User Service', () => {
                 fullName: 'Teste da Silva'
             });
 
-            expect(result.message).toBe('Usuário criado com sucesso!');
+            expect(result.message).toBe('Usuário criado com sucesso');
             expect(result.user).toHaveProperty('id', 1);
             expect(result.user).toHaveProperty('username', 'teste');
             expect(result.user).toHaveProperty('email', 'teste@test.com');
