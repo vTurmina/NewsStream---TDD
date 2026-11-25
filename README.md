@@ -89,3 +89,15 @@ Configure as variáveis de ambiente necessárias antes de executar a aplicação
 ## Licença
 
 ISC — conforme declarado no `package.json`.
+
+
+## Entrega Contínua
+
+O projeto utiliza GitHub Actions para integração e entrega contínua (CI/CD).
+
+O processo inclui:
+- Validação automatizada por CI.
+- Geração de pacotes versionados.
+- Publicação em staging.
+- Aprovação manual para produção.
+- Criação de Releases e suporte a rollback.
