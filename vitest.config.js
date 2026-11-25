@@ -19,7 +19,11 @@ export default defineConfig({
         'src/app.js' // o arquivo app.js não será testado
       ],
 
-      reportsDirectory: './coverage'
+      reportsDirectory: './coverage',
+
+        thresholds: {
+        lines: 60
+      }
     }
   }
 });

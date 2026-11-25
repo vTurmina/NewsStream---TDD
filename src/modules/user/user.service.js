@@ -16,7 +16,7 @@ const validateRegisterData = ({ password, confirmPassword }) => {
 
 //Função para fazer o registro
 export const register = async (data, userModel) => {
-    const { username, email, password, confirmPassword, fullName = null } = data;
+    const { username, email, password, fullName = null } = data;
 
     validateRegisterData(data);
 
