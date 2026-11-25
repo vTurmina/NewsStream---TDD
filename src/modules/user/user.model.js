@@ -1,6 +1,5 @@
-import { DataTypes, Sequelize } from 'sequelize';
-import sequelize from '../../config/database/database.js'
-import { type } from 'happy-dom/lib/PropertySymbol.js';
+import { DataTypes } from 'sequelize';
+import sequelize from '../../config/database/database.js';
 
 const User = sequelize.define('User', {
 

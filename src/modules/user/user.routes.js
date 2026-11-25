@@ -1,5 +1,4 @@
 import express from 'express';
-import isAuthenticad from '../../middlewares/auth.js';
 const router = express.Router();
 
 import * as userController from './user.controller.js';
