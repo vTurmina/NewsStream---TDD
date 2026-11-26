@@ -50,6 +50,17 @@ describe('News Service', () => {
             await expect(newsService.createNews(data, 1, mockNewsModel))
                 .rejects.toThrow('A notícia precisa de um título');
         });
+
+        it('Deve retornar erro se o título tiver menos de 5 caracteres', async () => {
+            const data = {
+                title: 'Oi',
+                content: 'Conteúdo da notícia',
+                categoryId: 1
+            };
+
+            await expect(newsService.createNews(data, 1, mockNewsModel))
+                .rejects.toThrow('O título deve ter pelo menos 5 caracteres');
+        });
     });
 
     describe('getAllNews', () => {

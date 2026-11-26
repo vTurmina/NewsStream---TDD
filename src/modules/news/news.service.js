@@ -7,6 +7,10 @@ const validateNewsData = ({ title, content }) => {
     if (!content || content.trim() === '') {
         throw new Error('Conteúdo obrigatório');
     }
+
+    if (title.trim().length < 5) {
+    throw new Error('O título deve ter pelo menos 5 caracteres');
+}
 };
 
 
