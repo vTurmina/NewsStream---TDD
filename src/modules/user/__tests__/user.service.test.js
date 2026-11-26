@@ -18,6 +18,19 @@ describe('User Service', () => {
     });
 
     describe('register', () => {
+        it('deve retornar erro se senha ou confirmação estiverem vazias', async () => {
+            const data = {
+                username: 'teste',
+                email: 'teste@test.com',
+                password: '',
+                confirmPassword: ''
+            };
+
+            await expect(userService.register(data, mockUserModel))
+                .rejects
+                .toThrow('Senha e confirmação são obrigatórias!');
+        });
+
         it('deve retornar erro se as senhas não coincidirem', async () => {
             const data = {
                 username: 'teste',

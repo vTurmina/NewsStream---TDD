@@ -4,6 +4,15 @@ import { Op } from 'sequelize';
 
 //Função para validar dados no registro
 const validateRegisterData = ({ password, confirmPassword }) => {
+    if (
+        typeof password !== 'string' ||
+        typeof confirmPassword !== 'string' ||
+        !password ||
+        !confirmPassword
+    ) {
+        throw new Error('Senha e confirmação são obrigatórias!');
+    }
+
     if (password !== confirmPassword) {
         throw new Error('As senhas não coincidem!');
     }
