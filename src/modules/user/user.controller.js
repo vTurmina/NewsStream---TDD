@@ -39,13 +39,3 @@ export const logout = (req, res) => {
     });
 
 };
-
-export const getProfile = async (req, res) => {
-    try {
-        const user = await userService.getProfile(req.session.user.id, User);
-        return res.json(user);
-    } catch (error) {
-        req.flash('error', error.message);
-        return res.redirect('/feed');
-    }
-};
